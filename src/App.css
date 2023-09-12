@@ -1,4 +1,13 @@
-.App {
-  text-align: center;
+body{
+  background-color: gainsboro;
+  text-transform: capitalize;
+}
+
+
+input{
+  border-radius: 15px;
+  border: 2px solid gray;
+  margin: 15px 30px;
+  background-color: white;
 }
 
