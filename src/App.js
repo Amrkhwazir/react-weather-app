@@ -2,7 +2,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 
 function App() {
-  const [weatherArr, setWeatherArr] = useState('');
+  const [weatherArr, setWeatherArr] = useState(null);
   const [citySearch, setCitySearch] = useState('karachi');
 
 async  function fetchData(){
@@ -36,8 +36,9 @@ useEffect(()=>{
       {!weatherArr ? (
     <p>data not found</p>
     ) : (
-    <div style={{backgroundColor: "white"}}>
+    <div style={{backgroundColor: "white", textTransform: "capitalize"}}>
     <h1 style={{backgroundColor: "white", textAlign: "center"}}>{weatherArr.name}</h1>
+    <h2 style={{backgroundColor: "white", textAlign: "center"}}>{weatherArr.main.temp} <sup>o</sup>C</h2>
     <p style={{backgroundColor: "white", textAlign: "center"}}>{weatherArr.weather[0].description}</p>
     <p style={{backgroundColor: "white", textAlign: "center"}}>{weatherArr.weather[0].main}</p>
     
@@ -46,27 +47,40 @@ useEffect(()=>{
  </div>
 
  <div className='details' style={{padding:"5px 20px",backgroundColor: "whitesmoke", width: "100%",borderRadius: "0px 15px 15px 0px", fontWeight: "500", color: "gray"}}>
- <p style={{fontSize: "24px", color: "black"}}>today's highlights</p>
+ <p style={{fontSize: "24px", color: "black", textTransform: 'capitalize'}}>today's highlights</p>
 
- <div className='cardCont' style={{height:"340px", display: "flex", flexWrap: "wrap", justifyContent: "space-around", textAlign: "center", fontSize: "12px",}}>
-  <div style={{ height:"150px", width: "150px", marginTop: "7px", backgroundColor: "white", borderRadius:"15px", paddingTop:"10px"}}>
+ <div className='cardCont' style={{height:"340px", display: "flex", flexWrap: "wrap", justifyContent: "space-around", textAlign: "center",}}>
+
+  <div style={{height:"150px", width: "150px", marginTop: "7px", backgroundColor: "white", borderRadius:"15px", paddingTop:"10px"}}>
     <p>wind status</p>
+    <h3 style={{color: "blue"}}>{!weatherArr ? "": weatherArr.wind.speed} km/h</h3>
   </div>
+
   <div style={{ height:"150px", width: "150px", marginTop: "7px", backgroundColor: "white", borderRadius:"15px", paddingTop:"10px"}}>
   <p>min | max</p>
+  <h3 style={{color: "blue"}}>min{!weatherArr ? "" : weatherArr.main.temp_min} <br /> max {!weatherArr ? "": weatherArr.main.temp_max}</h3>
   </div>
+
   <div style={{ height:"150px", width: "150px", marginTop: "7px", backgroundColor: "white", borderRadius:"15px", paddingTop:"10px"}}>
     <p>sunrise & sunset</p>
+    <h3 style={{color: "blue"}}>sunrise{!weatherArr ? "" : weatherArr.sys.sunrise} <br /> sunset {!weatherArr ? "": weatherArr.sys.sunset}</h3>
   </div>
+
   <div style={{ height:"150px", width: "150px", marginTop: "7px", backgroundColor: "white", borderRadius:"15px", paddingTop:"10px"}}>
     <p>humidity</p>
+    <h3 style={{color: "blue"}}>{!weatherArr ? "": weatherArr.main.humidity}<sup>%</sup></h3>
   </div>
+
   <div style={{ height:"150px", width: "150px", marginTop: "7px", backgroundColor: "white", borderRadius:"15px", paddingTop:"10px"}}>
     <p>visibility</p>
+    <h3 style={{color: "blue"}}>{!weatherArr ? "": weatherArr.visibility} <sub>km</sub></h3>
   </div>
+
   <div style={{ height:"150px", width: "150px", marginTop: "7px", backgroundColor: "white", borderRadius:"15px", paddingTop:"10px"}}>
     <p>feels_like</p>
+    <h3 style={{color: "blue"}}>{!weatherArr ? "": weatherArr.main.feels_like} <sup>o</sup>C</h3>
   </div>
+  
  </div>
  </div>
     </div>
