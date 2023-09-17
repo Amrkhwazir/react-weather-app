@@ -1,16 +1,25 @@
 import './App.css';
 import { useEffect, useState } from 'react';
+import clear_bg from "./assets/sunny.jpg";
+import cloud_bg from "./assets/cloud.png";
+import drizzle_bg from "./assets/drizzle.png";
+import thunder_bg from "./assets/thunder.jpg";
+import snow_bg from "./assets/snow.jpg";
+import haze_bg from "./assets/haze.jpg";
 
 function App() {
   const [weatherArr, setWeatherArr] = useState(null);
   const [citySearch, setCitySearch] = useState('');
+  const [weatherName, setWeatherName] = useState("");
 
 async  function fetchData(){
   try {
     const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&appid=acc34772c380bdc2c6fbd4b39da86263&units=metric`);
     const data = await res.json();
-    console.log(data)
+    // console.log(data)
+
     setWeatherArr(data);
+    setWeatherName(data.weather[0].main)
   } catch (error) {
    console.log(error) 
   }
@@ -19,6 +28,32 @@ async  function fetchData(){
 useEffect(()=>{
   fetchData();
 },[citySearch]);
+
+function setBackground() {
+  if (
+    weatherName == "Haze" ||
+    weatherName == "Mist" ||
+    weatherName == "Smoke" ||
+    weatherName == "Dust" ||
+    weatherName == "Fog" ||
+    weatherName == "Sand" ||
+    weatherName == "Ash" ||
+    weatherName == "Squall" ||
+    weatherName == "Tornado"
+  ) {
+    return `url(${haze_bg})`;
+  } else if (weatherName == "Rain" || weatherName == "Drizzle") {
+    return `url(${drizzle_bg})`;
+  } else if (weatherName == "Clouds") {
+    return `url(${cloud_bg})`;
+  } else if (weatherName == "Thunderstorm") {
+    return `url(${thunder_bg})`;
+  } else if (weatherName == "Snow") {
+    return `url(${snow_bg})`;
+  } else if (weatherName == "Clear") {
+    return `url(${clear_bg})`;
+  }
+}
 
 
   return(
@@ -34,6 +69,30 @@ useEffect(()=>{
       onChange={(e)=> setCitySearch(e.target.value)}
       />
       </>
+
+    
+       <>
+       {!citySearch ?   <p style={{textAlign: "center"}}>Image not found</p> : (
+
+<div
+className="backgoundContainer"
+style={{
+  backgroundImage: setBackground(),
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
+  width: "150px",
+  height:"150px",
+  // border: "1px solid black",
+  marginLeft: "70px",
+  borderRadius: "8px",
+  marginTop: "10px"
+  
+}}>
+
+</div>
+       )}
+       </>
+
 <>
 {!citySearch ? (
     <p style={{textAlign: "center"}}>data not found</p>
