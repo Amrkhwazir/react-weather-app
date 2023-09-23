@@ -17,3 +17,88 @@ input{
 margin-top: 30px !important;
 font-weight: 500;
 }
+
+/* mobile */
+@media(max-Width: 450px) and (min-width: 370px){
+
+  .mainBox{
+    width: 350px !important;
+    justify-content: center !important;
+    height: 900px !important;
+    padding: 40px 0px !important;
+    text-align: center;
+    flex-wrap: wrap !important;
+    
+  }
+  .details{
+    margin-top: 0px !important;
+    
+  }
+  
+  .mainSec{
+    margin-bottom: 0px !important;
+    border-radius: 0px !important;
+  }
+  .cardCont{
+    overflow-y: auto;
+  }
+}
+
+
+/* tablet */
+@media(max-Width: 768px) and (min-width: 455px){
+
+  .mainBox{
+    width: 700px !important;
+    justify-content: center !important;
+    /* height: 900px !important; */
+    padding: 40px!important;
+    text-align: center;
+    flex-wrap: nowrap !important;
+    flex: 1;
+
+  }
+  .mainSec{
+    margin-left: 20px !important;
+    border-radius: 0px !important;
+  }
+  .cardCont{
+    /* border:  1px solid red; */
+    width: 400px !important;
+  }
+  .cardCont div{
+    /* border:  1px solid red; */
+    width: 120px !important;
+    height: 120px !important;
+  }
+
+}
+
+/* laptop */
+@media(max-Width: 1024px) and (min-width: 780px){
+
+  .mainBox{
+    width: 700px !important;
+    justify-content: center !important;
+    /* height: 900px !important; */
+    padding: 30px!important;
+    text-align: center;
+    flex-wrap: nowrap !important;
+    flex: 1;
+
+  }
+  .mainSec{
+    margin-left: 20px !important;
+    border-radius: 0px !important;
+  }
+  .cardCont{
+    /* border:  1px solid red; */
+    width: 400px !important;
+  }
+  .cardCont div{
+    /* border:  1px solid red; */
+    width: 120px !important;
+    height: 120px !important;
+  }
+
+}
